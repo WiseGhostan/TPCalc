@@ -8,6 +8,7 @@ This is a repository used for project documentation and code versioning.
 ### Technologies
 <p display="inline-block">
   <img width="48" src="https://codigo35.com/wp-content/uploads/2023/09/695px-C_Programming_Language.svg_.png" alt="c-logo"/>
+  <img width="48" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/1101px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="excel-logo"/>
 </p>
                                                                                                   
 ### Development Tools
