@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> // Adicionado para corrigir o erro
+#include <string.h>
 #include "calculadora.h"
 
 int main() {
@@ -12,7 +12,7 @@ int main() {
 
     float valor = getValor(posFixa);
 
-    printf("Resultado: %.2f\n", valor);
+    printf("Resultado: %f\n", valor);
 
     return 0;
 }

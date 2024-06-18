@@ -7,28 +7,29 @@
 #define PI acos(-1)
 
 // Função para verificar se um token é um operador
-int isOperator(char *token) {
+int isOperator(const char *token) {
     return strcmp(token, "+") == 0 || strcmp(token, "-") == 0 ||
            strcmp(token, "*") == 0 || strcmp(token, "/") == 0 ||
            strcmp(token, "^") == 0;
 }
 
 // Função para verificar se um token é uma função
-int isFunction(char *token) {
+int isFunction(const char *token) {
     return strcmp(token, "raiz") == 0 || strcmp(token, "sen") == 0 ||
            strcmp(token, "cos") == 0 || strcmp(token, "tg") == 0 ||
            strcmp(token, "log") == 0;
 }
 
 // Função para converter expressão posfixa para infixada
-char *getFormaInFixa(char *Str) {
+char *getFormaInFixa(const char *Str) {
     char *tokens[512];
     char *stack[512];
     int top = -1;
     int tokenCount = 0;
 
     // Criar uma cópia da string para preservar a original
-    char *strCopy = strdup(Str);
+    char *strCopy = (char *)malloc(strlen(Str) + 1);
+    strcpy(strCopy, Str);
 
     // Tokenizar a expressão
     char *token = strtok(strCopy, " ");
@@ -46,12 +47,15 @@ char *getFormaInFixa(char *Str) {
             char *expr = (char *)malloc(512 * sizeof(char));
             snprintf(expr, 512, "(%s %s %s)", op1, token, op2);
             stack[++top] = expr;
+            free(op1);  // Libera memória dos operandos
+            free(op2);
         } else if (isFunction(token)) {
             // Função
             char *op = stack[top--];
             char *expr = (char *)malloc(512 * sizeof(char));
             snprintf(expr, 512, "%s(%s)", token, op);
             stack[++top] = expr;
+            free(op);  // Libera memória do operando
         } else {
             // Número
             char *num = (char *)malloc(512 * sizeof(char));
@@ -70,14 +74,15 @@ char *getFormaInFixa(char *Str) {
 }
 
 // Função para calcular o valor de uma expressão posfixa
-float getValor(char *Str) {
+float getValor(const char *Str) {
     char *tokens[512];
     float stack[512];
     int top = -1;
     int tokenCount = 0;
 
     // Criar uma cópia da string para preservar a original
-    char *strCopy = strdup(Str);
+    char *strCopy = (char *)malloc(strlen(Str) + 1);
+    strcpy(strCopy, Str);
 
     // Tokenizar a expressão
     char *token = strtok(strCopy, " ");
@@ -130,4 +135,3 @@ float getValor(char *Str) {
 
     return result;
 }
-
